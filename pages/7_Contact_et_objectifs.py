@@ -129,6 +129,18 @@ with contact_col2:
     st.markdown("#### Document professionnel")
     cv_download_button()
 
+    st.markdown("#### Liens professionnels")
+    st.link_button(
+        "🔗 LinkedIn",
+        "https://linkedin.com/in/henrique-da-costa",
+        use_container_width=True,
+    )
+    st.link_button(
+        "💻 GitHub",
+        "https://github.com/henrique-dacosta/portfolio-henrique-da-costa",
+        use_container_width=True,
+    )
+
 st.caption(
     "Coordonnées publiées pour les échanges professionnels relatifs aux missions "
     "de conseil, d’analyse, de Business Intelligence et de formation."
