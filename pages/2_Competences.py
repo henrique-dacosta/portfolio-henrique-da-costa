@@ -37,6 +37,63 @@ for index, (icon, title, text, proof, badges) in enumerate(skills):
     with columns[index % 2]:
         render_skill_card(icon, title, text, proof, badges)
 
+
+render_section_heading(
+    "Soft skills & posture consultant Data",
+    "Des compétences comportementales mobilisées pour transformer un besoin métier en livrable exploitable."
+)
+
+soft_skills = [
+    (
+        "🎧",
+        "Écoute & reformulation",
+        "Comprendre le besoin métier, clarifier les attentes et traduire une problématique en objectifs d’analyse.",
+        "Cadrage P11, cahier des charges, analyse du besoin client",
+        ["Besoin métier", "Reformulation", "Cadrage", "Priorisation"],
+    ),
+    (
+        "🛡️",
+        "Rigueur & fiabilité",
+        "Contrôler les données, expliciter les hypothèses et sécuriser les traitements avant restitution.",
+        "Projets SQL, RGPD, Power BI et analyses documentées",
+        ["Contrôle", "Traçabilité", "Hypothèses", "Qualité"],
+    ),
+    (
+        "🧩",
+        "Esprit de synthèse",
+        "Structurer l’information pour produire des messages clairs, hiérarchisés et directement exploitables.",
+        "Restitutions projet, tableaux de bord, recommandations",
+        ["Synthèse", "Clarté", "Hiérarchisation", "Décision"],
+    ),
+    (
+        "🎓",
+        "Pédagogie",
+        "Rendre les analyses, tableaux de bord et outils compréhensibles pour des utilisateurs non techniques.",
+        "Documentation, vidéo de formation, accompagnement utilisateur",
+        ["Transmission", "Vulgarisation", "Formation", "Support"],
+    ),
+    (
+        "🚀",
+        "Autonomie & livraison",
+        "Conduire un projet de bout en bout : cadrage, conception, développement, documentation et mise en ligne.",
+        "Portfolio P11, GitHub, Streamlit Community Cloud",
+        ["Autonomie", "Livraison", "Déploiement", "Recettage"],
+    ),
+    (
+        "🤝",
+        "Orientation client",
+        "Concevoir des livrables utiles, accessibles et adaptés au contexte professionnel du destinataire.",
+        "Portfolio public, navigation par preuves, liens et téléchargements",
+        ["Utilisateur", "Accessibilité", "Utilité", "Impact"],
+    ),
+]
+
+soft_columns = st.columns(2)
+for index, (icon, title, text, proof, badges) in enumerate(soft_skills):
+    with soft_columns[index % 2]:
+        render_skill_card(icon, title, text, proof, badges)
+
+
 render_section_heading("Ma chaîne de valeur")
 render_callout(
     "Fiabiliser les données → analyser les signaux → visualiser les résultats → formuler une décision → accompagner les utilisateurs.",
