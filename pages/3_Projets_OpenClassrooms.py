@@ -288,104 +288,76 @@ def render_p3_evidence() -> None:
     )
 
     st.markdown("#### Livrables consultables")
-    sources_path = P3_ASSET_DIR / "P3_sources_CSV.zip"
-    technical_path = P3_ASSET_DIR / "P3_document_technique.pdf"
-    queries_path = P3_ASSET_DIR / "P3_liste_requetes_et_resultats.pdf"
-    methodology_path = P3_ASSET_DIR / "P3_methodologie.pdf"
-    evaluation_path = P3_ASSET_DIR / "P3_grille_autoevaluation.pdf"
-    pptx_path = P3_ASSET_DIR / "P3_presentation.pptx"
-    presentation_pdf_path = P3_ASSET_DIR / "P3_presentation.pdf"
-    visuals_path = P3_ASSET_DIR / "P3_visuels_selectionnes.pdf"
+    livrables_p3 = [
+        {
+            "label": "🗃️ Télécharger les sources CSV",
+            "path": P3_ASSET_DIR / "P3_sources_CSV.zip",
+            "file_name": "P3_sources_CSV.zip",
+            "mime": "application/zip",
+            "key": "download_p3_sources",
+        },
+        {
+            "label": "🧩 Télécharger le document technique",
+            "path": P3_ASSET_DIR / "P3_document_technique.pdf",
+            "file_name": "P3_document_technique.pdf",
+            "mime": "application/pdf",
+            "key": "download_p3_technical",
+        },
+        {
+            "label": "🧾 Télécharger les requêtes et résultats",
+            "path": P3_ASSET_DIR / "P3_liste_requetes_et_resultats.pdf",
+            "file_name": "P3_liste_requetes_et_resultats.pdf",
+            "mime": "application/pdf",
+            "key": "download_p3_queries",
+        },
+        {
+            "label": "📽️ Télécharger la présentation PowerPoint",
+            "path": P3_ASSET_DIR / "P3_presentation.pptx",
+            "file_name": "P3_presentation.pptx",
+            "mime": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+            "key": "download_p3_pptx",
+        },
+        {
+            "label": "📄 Télécharger la présentation en PDF",
+            "path": P3_ASSET_DIR / "P3_presentation.pdf",
+            "file_name": "P3_presentation.pdf",
+            "mime": "application/pdf",
+            "key": "download_p3_presentation_pdf",
+        },
+        {
+            "label": "✅ Télécharger la grille d’autoévaluation",
+            "path": P3_ASSET_DIR / "P3_grille_autoevaluation.pdf",
+            "file_name": "P3_grille_autoevaluation.pdf",
+            "mime": "application/pdf",
+            "key": "download_p3_evaluation",
+        },
+        {
+            "label": "🖼️ Télécharger les visuels sélectionnés",
+            "path": P3_ASSET_DIR / "P3_visuels_selectionnes.pdf",
+            "file_name": "P3_visuels_selectionnes.pdf",
+            "mime": "application/pdf",
+            "key": "download_p3_visuals",
+        },
+    ]
+
+    livrables_p3_disponibles = [
+        livrable for livrable in livrables_p3 if livrable["path"].exists()
+    ]
+
+    if livrables_p3_disponibles:
+        cols = st.columns(2)
+        for index, livrable in enumerate(livrables_p3_disponibles):
+            with cols[index % 2]:
+                st.download_button(
+                    livrable["label"],
+                    data=lambda file_path=livrable["path"]: file_path.read_bytes(),
+                    file_name=livrable["file_name"],
+                    mime=livrable["mime"],
+                    key=livrable["key"],
+                    width="stretch",
+                )
+
     archive_path = P3_ASSET_DIR / "P3_documents_et_preuves.zip"
-
-    first_row = st.columns(2)
-    with first_row[0]:
-        if sources_path.exists():
-            st.download_button(
-                "🗃️ Télécharger les sources CSV",
-                data=lambda file_path=sources_path: file_path.read_bytes(),
-                file_name="P3_sources_CSV.zip",
-                mime="application/zip",
-                key="download_p3_sources",
-                width="stretch",
-            )
-    with first_row[1]:
-        if technical_path.exists():
-            st.download_button(
-                "🧩 Télécharger le document technique",
-                data=lambda file_path=technical_path: file_path.read_bytes(),
-                file_name="P3_document_technique.pdf",
-                mime="application/pdf",
-                key="download_p3_technical",
-                width="stretch",
-            )
-
-    second_row = st.columns(2)
-    with second_row[0]:
-        if queries_path.exists():
-            st.download_button(
-                "🧾 Télécharger les requêtes et résultats",
-                data=lambda file_path=queries_path: file_path.read_bytes(),
-                file_name="P3_liste_requetes_et_resultats.pdf",
-                mime="application/pdf",
-                key="download_p3_queries",
-                width="stretch",
-            )
-    with second_row[1]:
-        if methodology_path.exists():
-            st.download_button(
-                "🧭 Télécharger la méthodologie",
-                data=lambda file_path=methodology_path: file_path.read_bytes(),
-                file_name="P3_methodologie.pdf",
-                mime="application/pdf",
-                key="download_p3_methodology",
-                width="stretch",
-            )
-
-    third_row = st.columns(2)
-    with third_row[0]:
-        if pptx_path.exists():
-            st.download_button(
-                "📽️ Télécharger la présentation PowerPoint",
-                data=lambda file_path=pptx_path: file_path.read_bytes(),
-                file_name="P3_presentation.pptx",
-                mime="application/vnd.openxmlformats-officedocument.presentationml.presentation",
-                key="download_p3_pptx",
-                width="stretch",
-            )
-    with third_row[1]:
-        if presentation_pdf_path.exists():
-            st.download_button(
-                "📄 Télécharger la présentation en PDF",
-                data=lambda file_path=presentation_pdf_path: file_path.read_bytes(),
-                file_name="P3_presentation.pdf",
-                mime="application/pdf",
-                key="download_p3_presentation_pdf",
-                width="stretch",
-            )
-
-    fourth_row = st.columns(2)
-    with fourth_row[0]:
-        if evaluation_path.exists():
-            st.download_button(
-                "✅ Télécharger la grille d’autoévaluation",
-                data=lambda file_path=evaluation_path: file_path.read_bytes(),
-                file_name="P3_grille_autoevaluation.pdf",
-                mime="application/pdf",
-                key="download_p3_evaluation",
-                width="stretch",
-            )
-    with fourth_row[1]:
-        if visuals_path.exists():
-            st.download_button(
-                "🖼️ Télécharger les visuels sélectionnés",
-                data=lambda file_path=visuals_path: file_path.read_bytes(),
-                file_name="P3_visuels_selectionnes.pdf",
-                mime="application/pdf",
-                key="download_p3_visuals",
-                width="stretch",
-            )
-
     if archive_path.exists():
         st.download_button(
             "📦 Télécharger l’archive complète P3",
