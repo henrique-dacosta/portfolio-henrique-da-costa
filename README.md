@@ -90,7 +90,9 @@ Elle présente notamment :
 
 ## Application en ligne
 
-Le lien vers l'application Streamlit sera ajouté ici après son déploiement.
+Le portfolio est accessible en ligne à l'adresse suivante :
+
+[https://henrique-da-costa-portfolio.streamlit.app](https://henrique-da-costa-portfolio.streamlit.app)
 
 ## Lancer l'application localement
 
